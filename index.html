@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketing Chatbot TP5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; background: #1e3c72; display: flex; justify-content: center; align-items: center; height: 100vh; margin:0;}
+        .chat-container { width: 420px; background:white; border-radius:15px; padding:20px; box-shadow:0 8px 20px rgba(0,0,0,0.2); display:flex; flex-direction:column;}
+        h2 { text-align:center; margin-bottom:10px; }
+        #chat-box { height:300px; overflow-y:auto; border:1px solid #ddd; padding:10px; border-radius:10px; margin-bottom:10px; background:#f9f9f9;}
+        .message { margin-bottom:10px; }
+        .user { text-align:right; color:#1e3c72; font-weight:bold; }
+        .bot { text-align:left; color:#2a5298; }
+        .input-area { display:flex; }
+        input { flex:1; padding:8px; border-radius:8px; border:1px solid #ccc; }
+        button { margin-left:5px; padding:8px 12px; border:none; background:#1e3c72; color:white; border-radius:8px; cursor:pointer; }
+        button:hover { background:#16325c; }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <h2>Marketing Chatbot 🤖</h2>
+    <div id="chat-box"></div>
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Tapez votre message...">
+        <button onclick="sendMessage()">Envoyer</button>
+    </div>
+</div>
+
+<script>
+const botResponses = {
+    "bonjour": "Bonjour ! Comment puis-je vous aider à améliorer votre marketing aujourd'hui ?",
+    "c quoi le marketing": "Le marketing consiste à promouvoir et vendre un produit ou service, en répondant aux besoins des clients.",
+    "email marketing": "L'email marketing permet de toucher vos clients directement dans leur boîte mail avec des offres ciblées.",
+    "réseaux sociaux": "Les réseaux sociaux sont essentiels pour engager votre audience et construire la notoriété de votre marque.",
+    "seo": "Le SEO permet à votre site web d'apparaître dans les premiers résultats de recherche pour attirer plus de visiteurs."
+};
+
+function sendMessage() {
+    const input = document.getElementById("user-input");
+    const chatBox = document.getElementById("chat-box");
+    const userMessage = input.value.trim().toLowerCase();
+    if (!userMessage) return;
+
+    chatBox.innerHTML += `<div class="message user">Vous: ${input.value}</div>`;
+    input.value = "";
+
+    let botReply = botResponses[userMessage] || "Je suis encore en apprentissage, peux-tu reformuler ta question ?";
+    chatBox.innerHTML += `<div class="message bot">Bot: ${botReply}</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+</script>
+
+</body>
+</html>
